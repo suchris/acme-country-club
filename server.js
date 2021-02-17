@@ -9,8 +9,12 @@ const {
 const port = process.env.PORT || 3000;
 
 const init = async () => {
-  await syncAndSeed();
-  app.listen(port, () => console.log(`listening on ${port}`));
+  try {
+    await syncAndSeed();
+    app.listen(port, () => console.log(`listening on ${port}`));
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 init();
