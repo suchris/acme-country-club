@@ -48,6 +48,9 @@ Member.hasMany(Booking, { foreignKey: 'bookedById' });
 Booking.belongsTo(Facility);
 Facility.hasMany(Booking);
 
+Member.belongsToMany(Booking, {through: 'member_booking'});
+Booking.belongsToMany(Member, {through: 'member_booking'});
+
 const syncAndSeed = async () => {
   await db.sync({ force: true });
   // facility seed data
